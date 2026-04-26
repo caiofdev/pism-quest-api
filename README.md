@@ -41,21 +41,21 @@ sudo usermod -aG docker $USER
 
 Depois de adicionar o usuário ao grupo docker, reinicie o terminal.
 
-### 2) Variáveis de ambiente (opcional)
+### 2) Carregar variáveis de ambiente para a API (obrigatório)
 
-Por padrão, a API usa:
-
-- `DB_URL=jdbc:postgresql://localhost:5432/pismquest`
-- `DB_USERNAME=postgres`
-- `DB_PASSWORD=postgres`
-
-Se quiser sobrescrever:
+As variáveis já ficam no arquivo `.env`. Antes de rodar a API, carregue no shell:
 
 ```bash
-export DB_URL=jdbc:postgresql://localhost:5432/pismquest
-export DB_USERNAME=postgres
-export DB_PASSWORD=postgres
+set -a
+source .env
+set +a
 ```
+
+Variáveis usadas pelo Spring Boot:
+
+- `DB_URL`
+- `DB_USERNAME`
+- `DB_PASSWORD`
 
 ### 3) Rodar a API
 
