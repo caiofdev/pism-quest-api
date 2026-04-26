@@ -67,16 +67,10 @@ A API sobe em `http://localhost:8080`.
 
 ## Endpoints iniciais
 
-- Health custom: `GET /api/health`
 - Actuator health: `GET /actuator/health`
 - Swagger UI: `GET /swagger-ui/index.html`
 - OpenAPI JSON: `GET /v3/api-docs`
 
-Exemplo:
-
-```bash
-curl http://localhost:8080/api/health
-```
 
 ## Banco de dados
 
