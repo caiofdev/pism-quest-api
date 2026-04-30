@@ -21,7 +21,7 @@ public class UsuarioService {
         if (usuarioRepository.existsByEmail(email)) {
             throw new UsuarioJaCadastradoException();
         }
-        Usuario usuario = Usuario.cadastro(nome, email, senha);
+        Usuario usuario = new Usuario(nome, email, senha);
         return usuarioRepository.save(usuario);
     }
 
@@ -29,14 +29,19 @@ public class UsuarioService {
     public boolean login(String email, String senha) {
         Usuario usuario = usuarioRepository.findByEmail(email)
             .orElseThrow(UsuarioNaoEncontradoException::new);
-        return usuario.login(email, senha);
+
+        return usuario.getEmail() != null
+            && usuario.getSenha() != null
+            && usuario.getEmail().equals(email)
+            && usuario.getSenha().equals(senha);
     }
 
     @Transactional
     public Usuario alterarSenha(int id, String novaSenha) {
         Usuario usuario = usuarioRepository.findById(id)
             .orElseThrow(UsuarioNaoEncontradoException::new);
-        usuario.alterarSenha(novaSenha);
+
+        usuario.setSenha(novaSenha);
         return usuarioRepository.save(usuario);
     }
 }
