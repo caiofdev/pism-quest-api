@@ -78,6 +78,55 @@ A API sobe em `http://localhost:8080`.
 - Configuração principal: `src/main/resources/application.yml`
 - Ambiente de desenvolvimento local: `docker-compose.yml`
 
+## pgAdmin4 (interface web para PostgreSQL)
+
+Use o pgAdmin4 para visualizar o banco local. No WSL, prefira o modo web (o modo desktop costuma falhar por causa do AppArmor).
+
+### Instalacao no WSL (modo web recomendado)
+
+```bash
+sudo apt update
+sudo apt install -y curl ca-certificates gnupg
+
+curl -fsS https://www.pgadmin.org/static/packages_pgadmin_org.pub |
+	sudo gpg --dearmor -o /usr/share/keyrings/packages-pgadmin-org.gpg
+
+sudo sh -c 'echo "deb [signed-by=/usr/share/keyrings/packages-pgadmin-org.gpg] https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main" > /etc/apt/sources.list.d/pgadmin4.list'
+
+sudo apt update
+sudo apt install -y pgadmin4-web
+sudo /usr/pgadmin4/bin/setup-web.sh
+```
+
+Depois, acesse no navegador: `http://127.0.0.1/pgadmin4`.
+
+Para ligar/desligar o pgAdmin4 web (Apache):
+
+```bash
+# WSL sem systemd
+sudo service apache2 start
+sudo service apache2 stop
+
+# Com systemd
+sudo systemctl start apache2
+sudo systemctl stop apache2
+```
+
+### Instalacao no Linux com GUI (modo desktop)
+
+```bash
+sudo apt update
+sudo apt install -y curl ca-certificates gnupg
+
+curl -fsS https://www.pgadmin.org/static/packages_pgadmin_org.pub |
+	sudo gpg --dearmor -o /usr/share/keyrings/packages-pgadmin-org.gpg
+
+sudo sh -c 'echo "deb [signed-by=/usr/share/keyrings/packages-pgadmin-org.gpg] https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main" > /etc/apt/sources.list.d/pgadmin4.list'
+
+sudo apt update
+sudo apt install -y pgadmin4-desktop
+```
+
 ## Testes
 
 Os testes usam perfil `test` com H2 em memória para não depender de PostgreSQL ativo durante `mvn test`.
