@@ -98,7 +98,7 @@ sudo apt install -y pgadmin4-web
 sudo /usr/pgadmin4/bin/setup-web.sh
 ```
 
-Depois, acesse no navegador: `http://127.0.0.1/pgadmin4`.
+Depois, acesse no navegador: `http://localhost/pgadmin4`.
 
 Para ligar/desligar o pgAdmin4 web (Apache):
 
