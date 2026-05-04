@@ -19,19 +19,15 @@ public class Usuario {
     @Setter(AccessLevel.NONE)
     private int id;
 
-    @Column(nullable = false, length = 120)
     @Setter
     private String nome;
 
-    @Column(nullable = false, unique = true, length = 150)
     @Setter
     private String email;
 
-    @Column(nullable = false, length = 255)
     @Setter
     private String senha;
 
-    @Column(name = "data_criacao", nullable = false)
     @Setter(AccessLevel.NONE)
     private LocalDate dataCriacao;
 
