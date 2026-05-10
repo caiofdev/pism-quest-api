@@ -1,12 +1,18 @@
 package com.example.pismquest.api.model.entity;
 
+import com.example.pismquest.api.model.enums.Dificuldade;
+import com.example.pismquest.api.model.enums.Alternativas;
+
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,13 +28,11 @@ public class Questao {
     private Long id;
 
     private String enunciado;
-    private enum alternativas {
-        A, B, C, D, E
-    }
-    private char respostaCorreta;
-    private enum dificuldade {
-        FÁCIL, MÉDIO, DIFÍCIL
-    } 
+    @Enumerated(EnumType.STRING)
+    private Alternativas alternativas;
+    private Character respostaCorreta;
+    @Enumerated(EnumType.STRING)
+    private Dificuldade dificuldade;
     private String explicacao;
 
     @ManyToOne
@@ -36,4 +40,7 @@ public class Questao {
 
     @ManyToMany(mappedBy =  "questoes")
     private List<RevisaoEspacada> RevisaoEspacada;
+
+    @OneToMany(mappedBy =  "questao")
+    private List<Tentativa> tentativa; 
 }

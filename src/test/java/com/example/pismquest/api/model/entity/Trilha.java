@@ -1,8 +1,12 @@
 package com.example.pismquest.api.model.entity;
 
+import com.example.pismquest.api.model.enums.Dificuldade;
+
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -23,9 +27,8 @@ public class Trilha {
 
     private String nome;
     private String descricao;
-    private enum nivelDificuldade { 
-        FÁCIL, MÉDIO, DIFÍCIL
-    }
+    @Enumerated(EnumType.STRING)
+    private Dificuldade dificuldade;
 
     @ManyToOne
     private Disciplina disciplinas;

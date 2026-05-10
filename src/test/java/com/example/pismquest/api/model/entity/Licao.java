@@ -1,5 +1,7 @@
 package com.example.pismquest.api.model.entity;
 
+import com.example.pismquest.api.model.enums.Status;
+
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -22,10 +24,8 @@ public class Licao {
     private Long id;
 
     private String nome;
-    private enum status {
-        PENDENTE, INICIADA, EM_ANDAMENTO, CONCLUIDA
-    }
-    private double percentualConclusao;
+    private Status status;
+    private Double percentualConclusao;
 
     @ManyToOne
     private Trilha trilha;

@@ -18,4 +18,10 @@ public class Aluno extends Usuario {
 
     @OneToOne(mappedBy =  "aluno")
     private RevisaoEspacada revisaoEspacada;
+
+    @OneToOne(mappedBy =  "aluno")
+    private Historico historico;
+
+    @OneToOne(mappedBy =  "aluno")
+    private Tentativa tentativa;
 }
