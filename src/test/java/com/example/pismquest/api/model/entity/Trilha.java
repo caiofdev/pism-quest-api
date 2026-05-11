@@ -27,6 +27,7 @@ public class Trilha {
 
     private String nome;
     private String descricao;
+    
     @Enumerated(EnumType.STRING)
     private Dificuldade dificuldade;
 

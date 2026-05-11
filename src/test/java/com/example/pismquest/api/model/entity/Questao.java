@@ -28,12 +28,15 @@ public class Questao {
     private Long id;
 
     private String enunciado;
-    @Enumerated(EnumType.STRING)
-    private Alternativas alternativas;
     private Character respostaCorreta;
+    private String explicacao;
+    private Integer xp;
+
     @Enumerated(EnumType.STRING)
     private Dificuldade dificuldade;
-    private String explicacao;
+    
+    @Enumerated(EnumType.STRING)
+    private Alternativas alternativas;
 
     @ManyToOne
     private Licao licao;
